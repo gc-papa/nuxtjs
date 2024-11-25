@@ -7,7 +7,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'push', 'gcr.io/$PROJECT_ID/nuxtjs' ]
 
-  # Step 3: Deploy to Cloud Run with VPC connector
+  # Step 3: Deploy to Cloud Run with VPC connector, egress, ingress, and service account
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
@@ -21,9 +21,13 @@ steps:
       - '--region'
       - 'europe-west6'
       - '--vpc-connector'
-      - 'gcp-d-vpc-devspoke'
+      - 'projects/$PROJECT_ID/locations/europe-west6/connectors/gcp-d-vpc-devspoke'
       - '--vpc-egress'
+      - 'all-traffic'
+      - '--ingress'
       - 'all'
+      - '--service-account'
+      - '839767914554-compute@developer.gserviceaccount.com'
 
 images:
   - 'gcr.io/$PROJECT_ID/nuxtjs'
