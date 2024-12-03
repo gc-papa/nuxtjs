@@ -21,7 +21,7 @@ steps:
       - '--region'
       - 'europe-west6'
       - '--vpc-connector'
-      - 'projects/$PROJECT_ID/locations/europe-west6/connectors/gcp-d-vpc-devspoke'
+      - 'projects/gcp-ch-d-prj-paas-omniuccp/locations/europe-west6/connectors/amp-serverless-connector'
       - '--vpc-egress'
       - 'all-traffic'
       - '--ingress'
